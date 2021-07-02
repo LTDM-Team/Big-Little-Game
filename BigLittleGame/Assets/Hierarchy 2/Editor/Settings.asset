@@ -60,12 +60,16 @@ MonoBehaviour:
   offSetIconAfterName: 8
   displayComponents: 1
   componentAlignment: 1
-  componentDisplayMode: 3
+  componentDisplayMode: 2
   components:
   - Transform
   - RectTransform
+  - Rigidbody
+  - Rigidbody2D
+  - SpriteRenderer
+  - Camera
   componentLimited: 0
-  componentSize: 16
+  componentSize: 12
   componentSpacing: 2
   displayTag: 1
   tagAlignment: 0
