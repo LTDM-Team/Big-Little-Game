@@ -3,8 +3,11 @@
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(GroundChecker))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
+    public Vector2 Size => _renderer.size;
+
     [Header("Parameters")]
     [SerializeField] private float _horizontalSpeed;
     [SerializeField] private float _jumpForce;
@@ -12,12 +15,14 @@ public class Player : MonoBehaviour
     private PlayerInput _input;
     private GroundChecker _groundChecker;
     private Rigidbody2D _rigidbody;
+    private SpriteRenderer _renderer;
 
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();
         _groundChecker = GetComponent<GroundChecker>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _renderer = GetComponent<SpriteRenderer>();
 
         _input.HorizontalMove += OnHorizontalMove;
         _input.JumpKeyPressed += OnJumpKeyPressed;
