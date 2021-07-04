@@ -6,7 +6,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 _enterSize;
+    private float _minSizeToEnable;
     private CircleCollider2D _platformTrigger;
     private EdgeCollider2D _platformCollider;
     private void Awake()
@@ -17,11 +17,11 @@ public class Platform : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.GetComponent<Player>();
-        if(player != null && player.Size == _enterSize)
+        if(player != null && player.Size.y >= _minSizeToEnable)
         {
             _platformCollider.isTrigger = false;
         }
-        if (player != null && player.Size != _enterSize)
+        if (player != null && player.Size.y <= _minSizeToEnable)
         {
             _platformCollider.isTrigger = true;
         }
