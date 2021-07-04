@@ -3,7 +3,7 @@ using UnityEngine;
 public class Button : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 _sizeToEnable;
+    private float _sizeToEnable;
     [SerializeField]
     private GameObject[] _doors;
     private bool _isActive = false;
@@ -16,7 +16,7 @@ public class Button : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
-        if(!_isActive && player != null && player.Size == _sizeToEnable)
+        if(!_isActive && player != null && player.Size.x == _sizeToEnable)
         {
             ButtonRenderer.color = new Color(61, 255, 66, 255);
             DisactivateDoors();
