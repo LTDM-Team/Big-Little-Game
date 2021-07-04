@@ -6,6 +6,8 @@
 [RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
+
     public Vector2 Size => _renderer.size;
 
     [Header("Parameters")]
@@ -19,6 +21,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         _input = GetComponent<PlayerInput>();
         _groundChecker = GetComponent<GroundChecker>();
         _rigidbody = GetComponent<Rigidbody2D>();

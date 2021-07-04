@@ -1406,7 +1406,6 @@ GameObject:
   - component: {fileID: 212084296}
   - component: {fileID: 212084295}
   - component: {fileID: 212084298}
-  - component: {fileID: 212084299}
   - component: {fileID: 212084297}
   m_Layer: 0
   m_Name: CM vcam1
@@ -1474,10 +1473,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 212084294}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22c0b24d47f7e5d41a69cb7c513c44c8, type: 3}
+  m_Script: {fileID: 11500000, guid: cb51a17096f797d44b33b5bdd3b8d9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 3538999884832085026}
 --- !u!114 &212084298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1493,22 +1491,6 @@ MonoBehaviour:
   m_Offset: {x: 0.5, y: 0.5, z: 0}
   m_ApplyAfter: 0
   m_PreserveComposition: 1
---- !u!114 &212084299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212084294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4700f9f03ad19f94baf0367cb7a9c988, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Width: 2
-  m_Damping: 1
-  m_MinFOV: 3
-  m_MaxFOV: 60
 --- !u!1 &269500134
 GameObject:
   m_ObjectHideFlags: 0
