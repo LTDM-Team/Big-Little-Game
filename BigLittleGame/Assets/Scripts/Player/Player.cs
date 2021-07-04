@@ -15,7 +15,9 @@ public class Player : MonoBehaviour
 
     private PlayerInput _input;
     private GroundChecker _groundChecker;
+
     private Rigidbody2D _rigidbody;
+    private SpriteRenderer _renderer;
 
     private void Awake()
     {
@@ -23,7 +25,9 @@ public class Player : MonoBehaviour
 
         _input = GetComponent<PlayerInput>();
         _groundChecker = GetComponent<GroundChecker>();
+
         _rigidbody = GetComponent<Rigidbody2D>();
+        _renderer = GetComponentInChildren<SpriteRenderer>(true);
 
         _input.HorizontalMove += OnHorizontalMove;
         _input.JumpKeyPressed += OnJumpKeyPressed;
@@ -41,6 +45,9 @@ public class Player : MonoBehaviour
 
     private void Move(float direction)
     {
+        if (direction != 0)
+            _renderer.flipX = direction < 0;
+
         var horizontalForce = direction * _horizontalSpeed;
         _rigidbody.velocity = new Vector2(horizontalForce, _rigidbody.velocity.y);
     }
