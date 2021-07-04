@@ -16,31 +16,39 @@ public class Portal : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Teleport(collision.transform);
+        Teleport(collision);
     }
 
-    private void Teleport(Transform transform)
+    private void Teleport(Collider2D collider)
     {
+        var otherTransform = collider.transform;
         var otherPortalPosition = (Vector2)_otherPortal.transform.localPosition;
-        var otherPortalDirection = Vector2.right * 1.1f;
+        var otherPortalDirection = Vector2.zero;
+
+        var colliderSize = (Vector2)collider.bounds.size / otherTransform.lossyScale;
+        var colliderHorizontalSize = colliderSize.x / 2f;
+
+        var sizeMultiplier = (_otherPortal.Size - 0.03f) / colliderSize.y;
+        var sizeOffset = colliderHorizontalSize * sizeMultiplier;
+        var horizontalSizeOffset = sizeOffset * Vector2.right;
 
         if (_otherPortal.Direction == PortalInOutDirection.Left)
-            otherPortalDirection *= _otherPortal.Size * Vector2.left;
-        else  otherPortalDirection *= Vector2.right;
+            otherPortalDirection -= horizontalSizeOffset;
+        else otherPortalDirection += Vector2.right + horizontalSizeOffset;
 
-        transform.localPosition = otherPortalPosition + otherPortalDirection;
-        Resize(transform);
+        otherTransform.localPosition = otherPortalPosition + otherPortalDirection;
+        Resize(otherTransform, sizeMultiplier);
 
-        if (transform.TryGetComponent(out Rigidbody2D body))
+        if (otherTransform.TryGetComponent(out Rigidbody2D body))
             ChangeVelocity(body);
     }
-    private void Resize(Transform transform)
+    private void Resize(Transform otherTransform, float scaleMultiplier)
     {
-        var isExistRenderer = transform.TryGetComponent(out SpriteRenderer renderer);
+        var isExistRenderer = otherTransform.TryGetComponent(out SpriteRenderer renderer);
 
         if (isExistRenderer && renderer.drawMode != SpriteDrawMode.Simple)
-            renderer.size = _otherPortal.Size * Vector2.one;
-        else transform.localScale = _otherPortal.Size * Vector3.one;
+            renderer.size = scaleMultiplier * Vector2.one;
+        else otherTransform.localScale = scaleMultiplier * Vector3.one;
     }
     private void ChangeVelocity(Rigidbody2D body)
     {

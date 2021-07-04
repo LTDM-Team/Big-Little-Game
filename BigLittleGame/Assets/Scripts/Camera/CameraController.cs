@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
 
     private void OffsetCamera(Vector2 playerSize)
     {
-        _cameraOffset.m_Offset = new Vector3(playerSize.x, playerSize.y, 0);
+        _cameraOffset.m_Offset = new Vector3(0, playerSize.y, 0);
     }
     private void ChangeZoomCamera(Vector2 playerSize)
     {
