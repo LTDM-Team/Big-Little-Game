@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _renderer;
+    private Animator _animator;
 
     private void Awake()
     {
@@ -28,9 +29,14 @@ public class Player : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody2D>();
         _renderer = GetComponentInChildren<SpriteRenderer>(true);
+        _animator = GetComponentInChildren<Animator>(true);
 
         _input.HorizontalMove += OnHorizontalMove;
         _input.JumpKeyPressed += OnJumpKeyPressed;
+    }
+    private void FixedUpdate()
+    {
+        _animator.SetBool("IsGrounded", _groundChecker.IsGrounded);
     }
 
     private void OnHorizontalMove(float direction)
@@ -47,6 +53,10 @@ public class Player : MonoBehaviour
     {
         if (direction != 0)
             _renderer.flipX = direction < 0;
+
+        var speed = Mathf.Abs(direction);
+        _animator.SetFloat("Speed", speed);
+        _animator.SetFloat("AnimationSpeed", speed * 2f);
 
         var horizontalForce = direction * _horizontalSpeed;
         _rigidbody.velocity = new Vector2(horizontalForce, _rigidbody.velocity.y);

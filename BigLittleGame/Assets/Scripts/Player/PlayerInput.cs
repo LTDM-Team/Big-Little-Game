@@ -16,7 +16,7 @@ public class PlayerInput : MonoBehaviour
     }
 
     private float GetHorizontalAxis()
-        => Input.GetAxisRaw("Horizontal");
+        => Input.GetAxis("Horizontal");
     private bool IsJumpKeyPressed()
         => Input.GetKeyDown(KeyCode.Space)
         || Input.GetKeyDown(KeyCode.W)

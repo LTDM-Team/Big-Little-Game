@@ -67,6 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 270028250615267433}
   - component: {fileID: 4026867243610152261}
+  - component: {fileID: 3889152873461327534}
   m_Layer: 10
   m_Name: Visual
   m_TagString: Untagged
@@ -139,6 +140,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3889152873461327534
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4325806894308848943}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c31580297a5b337449d60943a5ed1968, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8277317849359901640
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,4 +284,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _horizontalSpeed: 5
-  _jumpForce: 10
+  _jumpForce: 8
