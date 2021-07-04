@@ -8,10 +8,17 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        var horizontalDirection = Input.GetAxisRaw("Horizontal");
-        HorizontalMove?.Invoke(horizontalDirection);
+        var horizontalMove = GetHorizontalAxis();
+        HorizontalMove?.Invoke(horizontalMove);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (IsJumpKeyPressed())
             JumpKeyPressed?.Invoke();
     }
+
+    private float GetHorizontalAxis()
+        => Input.GetAxisRaw("Horizontal");
+    private bool IsJumpKeyPressed()
+        => Input.GetKeyDown(KeyCode.Space)
+        || Input.GetKeyDown(KeyCode.W)
+        || Input.GetKeyDown(KeyCode.UpArrow);
 }
