@@ -2,22 +2,34 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
+    private const float PressedScaleMultiplier = 0.5f;
+
     [SerializeField] private float _minSizeToEnable;
     [SerializeField] private GameObject[] _doors;
-    
-    private bool _isActive = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
-        if(!_isActive && player != null && player.Size.y >= _minSizeToEnable)
+        if(collision.TryGetComponent(out Player player))
         {
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 2, transform.localScale.z);
-
-            DisactivateDoors();
-            _isActive = true;
+            OnPlayerEnter(player);
         }
     }
-    private void DisactivateDoors()
+    private void OnPlayerEnter(Player player)
+    {
+        var canActivate = player.Size.y >= _minSizeToEnable;
+        if (canActivate)
+            ActivateButton();
+    }
+    private void ActivateButton()
+    {
+        var currentScale = transform.localScale;
+        var scaleY = currentScale.y * PressedScaleMultiplier;
+        var newScale = new Vector3(currentScale.x, scaleY);
+
+        transform.localScale = newScale;
+        this.enabled = false;
+        OpenDoors();
+    }
+    private void OpenDoors()
     {
         foreach(GameObject door in _doors)
         {

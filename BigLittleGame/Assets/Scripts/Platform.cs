@@ -3,23 +3,21 @@ using UnityEngine;
 [RequireComponent(typeof(EdgeCollider2D))]
 public class Platform : MonoBehaviour
 {
-    [SerializeField] private float _minSizeToEnable;
+    [SerializeField] private float _maxPlayerSize;
 
-    private EdgeCollider2D _platformCollider;
+    private EdgeCollider2D _collider;
     private void Awake()
     {
-        _platformCollider = GetComponent<EdgeCollider2D>();
+        _collider = GetComponent<EdgeCollider2D>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.GetComponent<Player>();
-        if(player != null && player.Size.y >= _minSizeToEnable)
-        {
-            _platformCollider.isTrigger = false;
-        }
-        else if (player != null && player.Size.y < _minSizeToEnable)
-        {
-            _platformCollider.isTrigger = true;
-        }
+        if (collision.TryGetComponent(out Player player))
+            OnPlayerEnter(player);
+    }
+    private void OnPlayerEnter(Player player)
+    {
+        var canMove = player.Size.y <= _maxPlayerSize;
+        _collider.isTrigger = canMove == false;
     }
 }
