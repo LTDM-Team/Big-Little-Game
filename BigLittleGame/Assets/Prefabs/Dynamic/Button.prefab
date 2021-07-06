@@ -122,5 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c73dc43702645bd96306e2ba7e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minSizeToEnable: 3
+  _minSizeToEnable: 1
   _doors: []
