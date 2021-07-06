@@ -1,17 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(EdgeCollider2D))]
 public class Platform : MonoBehaviour
 {
-    [SerializeField]
-    private float _minSizeToEnable;
-    private CircleCollider2D _platformTrigger;
+    [SerializeField] private float _minSizeToEnable;
+
     private EdgeCollider2D _platformCollider;
     private void Awake()
     {
-        _platformTrigger = GetComponent<CircleCollider2D>();
         _platformCollider = GetComponent<EdgeCollider2D>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,7 +17,7 @@ public class Platform : MonoBehaviour
         {
             _platformCollider.isTrigger = false;
         }
-        if (player != null && player.Size.y <= _minSizeToEnable)
+        else if (player != null && player.Size.y < _minSizeToEnable)
         {
             _platformCollider.isTrigger = true;
         }
