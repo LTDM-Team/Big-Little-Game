@@ -6,13 +6,13 @@ public class Button : MonoBehaviour
 
     [SerializeField] private float _minSizeToEnable;
     [SerializeField] private GameObject[] _doors;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.TryGetComponent(out Player player))
-        {
             OnPlayerEnter(player);
-        }
     }
+
     private void OnPlayerEnter(Player player)
     {
         var canActivate = player.Size.y >= _minSizeToEnable;
@@ -23,17 +23,16 @@ public class Button : MonoBehaviour
     {
         var currentScale = transform.localScale;
         var scaleY = currentScale.y * PressedScaleMultiplier;
-        var newScale = new Vector3(currentScale.x, scaleY);
 
+        var newScale = new Vector3(currentScale.x, scaleY);
         transform.localScale = newScale;
-        this.enabled = false;
+
+        Destroy(this);
         OpenDoors();
     }
     private void OpenDoors()
     {
-        foreach(GameObject door in _doors)
-        {
+        foreach(var door in _doors)
             door.SetActive(false);
-        }
     }
 }
