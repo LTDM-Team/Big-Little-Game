@@ -4927,6 +4927,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8860133027073890033, guid: b7d89cf4e62b6a747bf66cc7c677b650, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8860133027073890035, guid: b7d89cf4e62b6a747bf66cc7c677b650, type: 3}
       propertyPath: m_Name
       value: Finish
