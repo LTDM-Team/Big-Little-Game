@@ -16,9 +16,6 @@ public class CameraController : MonoBehaviour
         _cameraOffset = GetComponent<CinemachineCameraOffset>();
 
         _defaultOrthoSize = _virtualCamera.m_Lens.OrthographicSize;
-    }
-    private void Start()
-    {
         _virtualCamera.Follow = Player.Instance.transform;
     }
     private void FixedUpdate()
