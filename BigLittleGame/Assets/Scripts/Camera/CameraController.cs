@@ -21,8 +21,12 @@ public class CameraController : MonoBehaviour
     {
         _virtualCamera.Follow = Player.Instance.transform;
     }
+
     private void FixedUpdate()
     {
+        if (_virtualCamera.Follow == null)
+            return;
+
         var size = Player.Instance.Size / 2f;
 
         OffsetCamera(size);
