@@ -33,6 +33,6 @@ public class Button : MonoBehaviour
     private void OpenDoors()
     {
         foreach(var door in _doors)
-            door.SetActive(false);
+            door.SetActive(!door.activeInHierarchy);
     }
 }
