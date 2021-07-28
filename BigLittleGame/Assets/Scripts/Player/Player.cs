@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer _renderer;
     private Animator _animator;
 
+    private bool _isJumping;
+
     private void Awake()
     {
         Instance = this;
@@ -36,7 +38,18 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _animator.SetBool("IsGrounded", _groundChecker.IsGrounded);
+        var isGrounded = _groundChecker.IsGrounded;
+
+        if (_isJumping)
+        {
+            _isJumping = isGrounded;
+            _animator.SetBool("IsGrounded", false);
+        }
+        else
+        {
+            _animator.SetBool("IsGrounded", isGrounded);
+        }
+        
     }
 
     private void OnHorizontalMove(float direction)
@@ -64,5 +77,9 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
+        _isJumping = true;
+
+        _animator.SetBool("IsGrounded", false);
+        _animator.SetTrigger("Jumping");
     }
 }

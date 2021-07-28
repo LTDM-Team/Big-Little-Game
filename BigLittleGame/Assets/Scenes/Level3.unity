@@ -373,6 +373,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 3273351510822604644, guid: 164ea33a5c883ec4f8fc5d607b1a48c8, type: 3}
+      propertyPath: orthographic size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3273351510822604699, guid: 164ea33a5c883ec4f8fc5d607b1a48c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.5
